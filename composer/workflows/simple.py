@@ -34,7 +34,7 @@ default_dag_args = {
     # fixed point in time rather than dynamically, since it is evaluated every
     # time a DAG is parsed. See:
     # https://airflow.apache.org/faq.html#what-s-the-deal-with-start-date
-    'start_date': datetime.datetime(2018, 1, 1),
+    'start_date': datetime.datetime(2022, 5, 24),
 }
 
 # Define a DAG (directed acyclic graph) of tasks.
