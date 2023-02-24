@@ -141,7 +141,7 @@ def main() -> None:
     training_dataset, validation_dataset = create_datasets(args.bucket)
     model = create_model(training_dataset)
     model.fit(training_dataset, validation_data=validation_dataset, epochs=20)
-    model.save(f"gs://{args.bucket}/model_output")
+    model.save(f"gs://{args.bucket}/model")
 
 
 if __name__ == "__main__":
