@@ -32,6 +32,9 @@ from typing import Tuple
 
 import tensorflow as tf
 
+import os
+import sys
+
 BANDS = [
     "B1",
     "B2",
@@ -113,6 +116,7 @@ def create_datasets(bucket: str) -> Tuple[tf.data.Dataset, tf.data.Dataset]:
 
     return training_dataset, validation_dataset
 
+MODEL_DIR = os.getenv("AIP_MODEL_DIR")
 
 def create_model(training_dataset: tf.data.Dataset) -> tf.keras.Model:
     """Creates model."""
@@ -141,7 +145,8 @@ def main() -> None:
     training_dataset, validation_dataset = create_datasets(args.bucket)
     model = create_model(training_dataset)
     model.fit(training_dataset, validation_data=validation_dataset, epochs=20)
-    model.save(f"gs://{args.bucket}/model")
+    #model.save(f"gs://{args.bucket}/model")
+    model.save(MODEL_DIR)
 
 
 if __name__ == "__main__":
