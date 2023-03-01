@@ -16,7 +16,7 @@
 # limitations under the License.
 
 import flask
-
+import os
 app = flask.Flask(__name__)
 
 
@@ -36,7 +36,8 @@ def run_predict() -> dict:
     try:
         args = flask.request.get_json() or {}
         bucket = args["bucket"]
-        model_dir = f"gs://{bucket}/model_output"
+        #model_dir = f"gs://{bucket}/model_output"
+        model_dir = os.getenv("AIP_MODEL_DIR")
         data = args["data"]
         predictions = predict.run(data, model_dir)
 
