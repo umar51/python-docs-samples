@@ -36,8 +36,9 @@ def run_predict() -> dict:
     try:
         args = flask.request.get_json() or {}
         bucket = args["bucket"]
-        #model_dir = f"gs://{bucket}/model_output"
-        model_dir = os.getenv("AIP_MODEL_DIR")
+        #model_dir = os.getenv("AIP_MODEL_DIR")
+        model_dir = f"gs://{bucket}/aiplatform-custom-training-2023-02-28-21:26:02.659/model"
+
         data = args["data"]
         predictions = predict.run(data, model_dir)
 
